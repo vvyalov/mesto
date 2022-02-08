@@ -12,4 +12,4 @@
 
 **Github**
 
-* [Ссылка в Github](https://vvyalov.github.io/russian-travel/)
+* [Ссылка в Github](https://vvyalov.github.io/mesto/)
