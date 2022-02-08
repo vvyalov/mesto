@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Путешествия по России</title>
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <a href="#"><img src="./images/logo.svg" alt="логотип" class="header__logo"></a>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar">
+        <div class="profile__info">
+          <button type="submit" class="profile__edit-button">
+            <img src="./images/edit-button.svg" alt="редактировать" class="profile__edit-button_image"> 
+          </button>
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+          <button type="submit" class="profile__add-button">
+            <img src="./images/add-button.svg" alt="подписаться" class="profile__add-button_image">
+          </button>
+      </section>
+      <section class="elemants">
+        <div class="element">
+          <img src="./images/karachaevsk.jpg" alt="карачаевск" class="element__image">
+          <div class="element__title">
+            <h2 class="element__text">Карачаевск</h2>
+            <button type="submit" class="element__like">
+              <img src="./images/like.svg" alt="нравится" class="element__like_image">
+            </button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/elbrus.jpg" alt="эльбрус" class="element__image">
+          <div class="element__title">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <button type="submit" class="element__like">
+              <img src="./images/like.svg" alt="нравится" class="element__like_image">
+            </button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/dombaii.jpg" alt="домбай" class="element__image">
+          <div class="element__title">
+            <h2 class="element__text">Домбай</h2>
+            <button type="submit" class="element__like">
+              <img src="./images/like.svg" alt="нравится" class="element__like_image">
+            </button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/elbrus.jpg" alt="эльбрус" class="element__image">
+          <div class="element__title">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <button type="submit" class="element__like">
+              <img src="./images/like.svg" alt="нравится" class="element__like_image">
+            </button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/dombaii.jpg" alt="домбай" class="element__image">
+          <div class="element__title">
+            <h2 class="element__text">Домбай</h2>
+            <button type="submit" class="element__like">
+              <img src="./images/like.svg" alt="нравится" class="element__like_image">
+            </button>
+          </div> 
+        </div>
+        <div class="element">
+          <img src="./images/karachaevsk.jpg" alt="карачаевск" class="element__image">
+          <div class="element__title">
+            <h2 class="element__text">Карачаево-Черкесия</h2>
+            <button type="submit" class="element__like">
+              <img src="./images/like.svg" alt="нравится" class="element__like_image">
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="popup">
+        <form class="popup__form">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__profile">
+            <input type="text" name="name" placeholder="Имя" class="popup__profile_name">
+            <input type="text" name="job" placeholder="О себе" class="popup__profile_job">
+          </fieldset>
+          <button type="submit" class="popup__button_save">
+            <p class="popup__button_text">Сохранить</p>
+          </button>
+        </form>
+        <button type="submit" class="popup__button_close">
+          <img src="./images/Close.svg" alt="закрыть" class="popup__button_image">
+        </button>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__autor">&copy; 2022 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

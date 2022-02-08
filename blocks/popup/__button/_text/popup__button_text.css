@@ -1,0 +1,17 @@
+.popup__button_text {
+  color: #fff;
+  margin: 14px 124px 18px 125px;
+  font-family: 'inter', 'Arial', sans-serif;
+  font-style: normal;
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__button_text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

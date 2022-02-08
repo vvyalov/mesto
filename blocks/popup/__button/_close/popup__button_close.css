@@ -1,0 +1,20 @@
+.popup__button_close {
+  border: none;
+  background-color: rgb(0, 0, 0, 0);
+  align-self: flex-start;
+  margin: 155px 0 0 0;
+  padding: 0 0 8px 8px;
+}
+
+.popup__button_close:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__button_close {
+    margin: 87px 0 0 0;
+    padding: 0 0 16px 250px;
+    align-self: center;
+  }
+
+}
