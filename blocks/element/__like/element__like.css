@@ -2,12 +2,14 @@
   background-color: #fff;
   padding: 0;
   border: none;
-}
-
-.element__like_image {
+  background-image: url(../../../images/like.svg);
   width: 22px;
   height: 19px;
-  margin: 5px 1px 5px 0;
+  margin: 5px 0 5px 0;
+}
+
+.element__like:active {
+  background-color: #000;
 }
 
 .element__like:hover {
