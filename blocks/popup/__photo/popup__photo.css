@@ -1,8 +1,7 @@
-.popup__profile {
+.popup__photo {
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  padding: 0;
 }
+
