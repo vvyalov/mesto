@@ -1,11 +1,8 @@
 .popup__image {
 max-width: 75vw;
 max-height: 75vh;
-}
-
-@media screen and (max-width: 767px) {
-  .popup__image {
-    max-width: 75vw;
-    max-height: 75vh;
-  }
+align-self: start;
+grid-row-start: 2;
+grid-column-start: 1;
+margin-bottom: -40px;
 }

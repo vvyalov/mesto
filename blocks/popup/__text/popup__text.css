@@ -1,7 +1,9 @@
 .popup__text {
   color: #fff;
   margin: 10px 0 0 0;
-  align-self: flex-start;
+  grid-row-start: 3;
+  grid-column-start: 1;
+  align-self: start;
   padding: 0;
   font-family: 'inter', 'Arial', sans-serif;
   font-style: normal;

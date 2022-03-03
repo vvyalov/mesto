@@ -1,6 +1,4 @@
-.popup__profile {
-  display: none;
-  flex-direction: column;
+.profile-popup {
   justify-content: center;
   align-items: center;
   margin: 0;
