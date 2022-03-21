@@ -1,7 +1,6 @@
 const container = document.querySelector('.page')
 const popupOpenButtonProfileForm = document.querySelector('.profile__edit-button')
 const popupOpenButtonCardsForm = document.querySelector('.profile__add-button')
-const popup = document.querySelector('.popup')
 const profilePopup = document.querySelector('.profile-popup')
 const cardPopup = document.querySelector('.card-popup')
 const photoPopup = document.querySelector('.photo-popup')
@@ -81,19 +80,44 @@ function deleteElement(evt){
 
 
 function openPopup(popup) {
-  popup.classList.add('popup_open')
+  popup.classList.add('popup_open');
+  document.addEventListener('keydown', closeEsc);
+  document.addEventListener('click', closeOverlay);
+  document.addEventListener('click', submitEnt);
 };
 
 function closePopup(popup) {
   popup.classList.remove('popup_open')
+  document.removeEventListener('keydown', closeEsc);
+  document.removeEventListener('click', closeOverlay);
+  document.removeEventListener('keydown', submitEnt);
+  popup.reset()
 };
 
 
+function closeEsc(evt) {
+  if (evt.key === 'Escape'){
+  closePopup(document.querySelector('.popup_open'))
+  }
+};
+
+function submitEnt(evt) {
+  if (evt.key === 'Enter'){
+  closePopup(document.querySelector('.popup_open'))
+  }
+};
+
+function closeOverlay(evt) {
+  if (evt.target.classList.contains('popup_open')){
+  closePopup(evt.target);
+}
+}
 
 function openPopupProfile() {
   openPopup(profilePopup)
   nameInput.value = profileTitle.textContent
   jobInput.value = profileSubtitle.textContent
+  setEventListeners(profilePopup)
 }
 
 function handleProfileFormSubmit(evt){
@@ -101,6 +125,7 @@ function handleProfileFormSubmit(evt){
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
     closePopup(profilePopup)
+    buttonSubmit(button)
   }
 
 
@@ -115,11 +140,8 @@ function handleCardFormSubmit(evt){
     const newCard = renderNewElement(title, link)
       elementsCard.prepend(newCard)
       closePopup(cardPopup)
-    titleInput.value = ''
-    linkInput.value = ''
+      cardPopup.reset()
 }
-
-
 
 popupOpenButtonCardsForm.addEventListener('click', openPopupCards);
 popupOpenButtonProfileForm.addEventListener('click', openPopupProfile);
@@ -129,4 +151,3 @@ popupCloseButtonPhoto.addEventListener('click', () => closePopup(photoPopup))
 
 profilePopup.addEventListener('submit', handleProfileFormSubmit);
 cardPopup.addEventListener('submit', handleCardFormSubmit);
-
