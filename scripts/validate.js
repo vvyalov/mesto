@@ -6,7 +6,7 @@ const optionValidity = ({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error',
   errorClassActive: 'popup__error_active',
-}); 
+});
 
 
 const showError = (formElement, inputElement, errorMessage, optionValidity) => {
@@ -48,13 +48,13 @@ const setEventListeners = (formElement, optionValidity) => {
 const enableValidation = (optionValidity) => {
   const formList = Array.from(document.querySelectorAll(optionValidity.formSelector));
   formList.forEach((formElement) => {
-      setEventListeners(formElement, optionValidity);
+    setEventListeners(formElement, optionValidity);
   });
 }
 
- enableValidation(optionValidity);
+enableValidation(optionValidity);
 
-function toggleButtonState (inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement) {
   if (hasValidInput(inputList)) {
     buttonDisabled(buttonElement)
   }
@@ -64,7 +64,7 @@ function toggleButtonState (inputList, buttonElement) {
 }
 
 
-function buttonDisabled (buttonElement) {
+function buttonDisabled(buttonElement) {
   buttonElement.setAttribute('disabled', true)
   buttonElement.classList.add(optionValidity.inactiveButtonClass);
 }
@@ -77,5 +77,5 @@ function removeButtonDisabled(buttonElement) {
 function hasValidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
-}); 
+  });
 }
