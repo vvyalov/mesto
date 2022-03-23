@@ -1,7 +1,6 @@
-const enableValidation = ({
+const optionValidity = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  popupFieldset: '.popup__info',
   submitButtonSelector: '.popup__button_type_save',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
@@ -9,66 +8,70 @@ const enableValidation = ({
   errorClassActive: 'popup__error_active',
 }); 
 
-const showError = (formElement, inputElement, errorMessage) => {
+
+const showError = (formElement, inputElement, errorMessage, optionValidity) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add(enableValidation.inputErrorClass);
+  inputElement.classList.add(optionValidity.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(enableValidation.errorClassActive);
+  errorElement.classList.add(optionValidity.errorClassActive);
 };
 
 
 
-const hideError = (formElement, inputElement) => {
+const hideError = (formElement, inputElement, optionValidity) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(enableValidation.inputErrorClass);
-  errorElement.classList.remove(enableValidation.errorClassActive);
+  inputElement.classList.remove(optionValidity.inputErrorClass);
+  errorElement.classList.remove(optionValidity.errorClassActive);
   errorElement.textContent = '';
 };
 
-const checkValidity = (formElement, inputElement) => {
+const checkValidity = (formElement, inputElement, optionValidity) => {
   if (!inputElement.validity.valid) {
-    showError(formElement, inputElement, inputElement.validationMessage);
+    showError(formElement, inputElement, inputElement.validationMessage, optionValidity);
   } else {
-    hideError(formElement, inputElement);
+    hideError(formElement, inputElement, optionValidity);
   }
 };
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(enableValidation.inputSelector));
-  const buttonElement = formElement.querySelector(enableValidation.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement);
+const setEventListeners = (formElement, optionValidity) => {
+  const inputList = Array.from(formElement.querySelectorAll(optionValidity.inputSelector));
+  const buttonElement = formElement.querySelector(optionValidity.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement, optionValidity);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      checkValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      checkValidity(formElement, inputElement, optionValidity);
+      toggleButtonState(inputList, buttonElement, optionValidity);
     });
   });
 };
 
-const validityState = () => {
-  const formList = Array.from(document.querySelectorAll(enableValidation.formSelector));
+const enableValidation = (optionValidity) => {
+  const formList = Array.from(document.querySelectorAll(optionValidity.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    const fieldsetList = Array.from(formElement.querySelectorAll(enableValidation.popupFieldset));
-fieldsetList.forEach((fieldSet) => {
-  setEventListeners(fieldSet);
-}); 
+      setEventListeners(formElement, optionValidity);
   });
- };
+}
 
- validityState();
+ enableValidation(optionValidity);
 
 function toggleButtonState (inputList, buttonElement) {
   if (hasValidInput(inputList)) {
-    buttonElement.setAttribute('disabled', true)
-    buttonElement.classList.add(enableValidation.inactiveButtonClass);
+    buttonDisabled(buttonElement)
   }
   else {
-    buttonElement.removeAttribute('disabled')
-    buttonElement.classList.remove(enableValidation.inactiveButtonClass);
+    removeButtonDisabled(buttonElement)
   }
+}
+
+
+function buttonDisabled (buttonElement) {
+  buttonElement.setAttribute('disabled', true)
+  buttonElement.classList.add(optionValidity.inactiveButtonClass);
+}
+
+function removeButtonDisabled(buttonElement) {
+  buttonElement.removeAttribute('disabled')
+  buttonElement.classList.remove(optionValidity.inactiveButtonClass);
 }
 
 function hasValidInput(inputList) {

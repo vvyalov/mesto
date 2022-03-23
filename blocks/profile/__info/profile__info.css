@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 2;
   grid-template-rows: 2;
-  max-width: 336px;
+  width: 336px;
   margin: 22px 0 25px 30px;
 }
 
