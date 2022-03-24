@@ -56,7 +56,7 @@ enableValidation(optionValidity);
 
 function toggleButtonState(inputList, buttonElement) {
   if (hasValidInput(inputList)) {
-    buttonDisabled(buttonElement)
+    disableSubmitButton(buttonElement)
   }
   else {
     removeButtonDisabled(buttonElement)
@@ -64,7 +64,7 @@ function toggleButtonState(inputList, buttonElement) {
 }
 
 
-function buttonDisabled(buttonElement) {
+function disableSubmitButton(buttonElement) {
   buttonElement.setAttribute('disabled', true)
   buttonElement.classList.add(optionValidity.inactiveButtonClass);
 }

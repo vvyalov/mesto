@@ -15,5 +15,6 @@
   .popup__form {
     max-width: 282px;
     max-height: 322px;
+    margin: 0;
   }
 }

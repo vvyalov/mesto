@@ -78,10 +78,10 @@ function closeOverlay(evt) {
 }
 
 function openPopupProfile() {
+  const saveButton = profilePopup.querySelector('.popup__button_type_save')
   openPopup(profilePopup)
   nameInput.value = profileTitle.textContent
   jobInput.value = profileSubtitle.textContent
-  const saveButton = profilePopup.querySelector('.popup__button_type_save')
   removeButtonDisabled(saveButton)
 }
 
@@ -95,19 +95,19 @@ function handleProfileFormSubmit(evt) {
 
 function openPopupCards() {
   openPopup(cardPopup)
+  const saveButton = cardPopup.querySelector('.popup__button_type_save')
+  disableSubmitButton(saveButton)
 }
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const popupFormCard = cardPopup.querySelector('.popup__form')
-  const saveButton = cardPopup.querySelector('.popup__button_type_save')
   const title = titleInput.value
   const link = linkInput.value
   const newCard = renderNewElement(title, link)
   elementsCard.prepend(newCard)
   closePopup(cardPopup)
   popupFormCard.reset()
-  buttonDisabled(saveButton)
 }
 
 

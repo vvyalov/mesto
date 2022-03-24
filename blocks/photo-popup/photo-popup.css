@@ -5,3 +5,8 @@
   margin: 0 0 0 32px;  
 }
 
+@media screen and (max-width: 767px) {
+.photo-popup {
+  margin: 0;
+  }
+}
