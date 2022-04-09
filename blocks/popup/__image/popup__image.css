@@ -5,6 +5,7 @@ align-self: start;
 grid-row-start: 2;
 grid-column-start: 1;
 margin-bottom: -40px;
+object-fit: cover;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {

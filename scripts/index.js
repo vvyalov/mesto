@@ -16,6 +16,8 @@ const linkInput = document.querySelector('.popup__input_type_link')
 const nameInput = document.querySelector('.popup__input_type_name')
 const jobInput = document.querySelector('.popup__input_type_job')
 const elementsCard = document.querySelector('.card')
+const popupFormCard = cardPopup.querySelector('.popup__form')
+const popupFormProfile = profilePopup.querySelector('.popup__form')
 
 const initialCards = [
   {
@@ -71,11 +73,10 @@ initialCards.forEach((card) => {
 
 
 function openPopupProfile() {
-  const saveButton = profilePopup.querySelector('.popup__button_type_save')
   openPopup(profilePopup)
   nameInput.value = profileTitle.textContent
   jobInput.value = profileSubtitle.textContent
-  editProfileValidator.removeButtonDisabled(saveButton)
+  editProfileValidator.removeButtonDisabled()
 }
 
 function handleProfileFormSubmit(evt) {
@@ -88,14 +89,12 @@ function handleProfileFormSubmit(evt) {
 
 function openPopupCards() {
   openPopup(cardPopup)
-  const saveButton = cardPopup.querySelector('.popup__button_type_save')
-  editCardValidator.disableSubmitButton(saveButton)
+  editCardValidator.disableSubmitButton()
 }
 
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  const popupFormCard = cardPopup.querySelector('.popup__form')
   const newCard = {
   name: titleInput.value,
   link: linkInput.value,
@@ -112,5 +111,5 @@ popupCloseButtonFormProfile.addEventListener('click', () => closePopup(profilePo
 popupCloseButtonFormCard.addEventListener('click', () => closePopup(cardPopup));
 popupCloseButtonPhoto.addEventListener('click', () => closePopup(photoPopup))
 
-profilePopup.addEventListener('submit', handleProfileFormSubmit);
-cardPopup.addEventListener('submit', handleCardFormSubmit);
+popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
+popupFormCard.addEventListener('submit', handleCardFormSubmit);

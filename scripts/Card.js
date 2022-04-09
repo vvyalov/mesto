@@ -12,7 +12,8 @@ export class Card {
   }
 
   _deleteElement() {
-    this._elementCard.remove()
+    this._elementCard.remove();
+    this._element = null;
   }
 
   _setEventListener() {

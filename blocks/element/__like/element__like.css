@@ -6,11 +6,9 @@
   width: 22px;
   height: 19px;
   margin: 5px 0 5px 0;
+  cursor: pointer;
 }
 
-.element__like:active {
-  background-color: #000;
-}
 
 .element__like:hover {
   opacity: .5;

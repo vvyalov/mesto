@@ -8,6 +8,7 @@
   padding: 0;
   grid-column-start: 2;
   align-self: end;
+  cursor: pointer;
 }
 
 .popup__button_type_close:hover {
