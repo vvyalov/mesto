@@ -12,6 +12,7 @@
   box-sizing: border-box;
   fill: solid;
   border: 1px solid #fff;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
