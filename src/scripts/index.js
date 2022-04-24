@@ -1,23 +1,25 @@
 import { FormValidator } from './FormValidator.js'
 import { Card } from './Card.js'
-import { openPopup, closePopup, photoPopup } from './utils.js'
+import { photoPopup } from './utils.js'
+import { Section } from './Section.js'
+import { PopupWithImage } from './PopupWithImage.js'
+import { PopupWithForm } from './PopupWithForm.js'
+import { UserInfo } from './UserInfo.js'
+import '../pages/index.css';
 
 const popupOpenButtonProfileForm = document.querySelector('.profile__edit-button')
 const popupOpenButtonCardsForm = document.querySelector('.profile__add-button')
 const profilePopup = document.querySelector('.profile-popup')
 const cardPopup = document.querySelector('.card-popup')
-const popupCloseButtonFormProfile = profilePopup.querySelector('.popup__button_type_close')
-const popupCloseButtonFormCard = cardPopup.querySelector('.popup__button_type_close')
-const popupCloseButtonPhoto = photoPopup.querySelector('.popup__button_type_close')
 const profileTitle = document.querySelector('.profile__title')
 const profileSubtitle = document.querySelector('.profile__subtitle')
 const titleInput = document.querySelector('.popup__input_type_title')
 const linkInput = document.querySelector('.popup__input_type_link')
 const nameInput = document.querySelector('.popup__input_type_name')
 const jobInput = document.querySelector('.popup__input_type_job')
-const elementsCard = document.querySelector('.card')
-const popupFormCard = cardPopup.querySelector('.popup__form')
-const popupFormProfile = profilePopup.querySelector('.popup__form')
+
+
+
 
 const initialCards = [
   {
@@ -62,54 +64,72 @@ const editCardValidator = new FormValidator(optionValidity, cardPopup)
 editProfileValidator.enableValidation()
 editCardValidator.enableValidation()
 
+const popupImage = new PopupWithImage(photoPopup)
+
 function renderNewElement(data) {
-  const card = new Card(data, '.elements-template')
-  return card.getNewElement()
+  
+  const card = new Card({
+    data, handleCardClick: () => {
+      popupImage.open(data.name, data.link)
+    }
+  }, '.elements-template')
+  return card
 }
 
-initialCards.forEach((card) => {
-  elementsCard.append(renderNewElement(card))
+const userInfo = new UserInfo({ 
+  nameSelector: '.profile__title',
+  jobSelector: '.profile__subtitle' 
 })
 
 
+
+const newPopupProfile = new PopupWithForm(profilePopup, {
+  handleFormSubmit: (form) => {
+    userInfo.setUserInfo(form);
+    profileTitle.textContent = nameInput.value;
+    profileSubtitle.textContent = jobInput.value;
+  }
+}) 
+
+
+const newPopupCard = new PopupWithForm(cardPopup, {
+  handleFormSubmit: () => {
+    const newnewCard = {
+    name: titleInput.value,
+    link: linkInput.value,
+   }
+    newCard.addItem(newnewCard);
+  }
+})
+
 function openPopupProfile() {
-  openPopup(profilePopup)
-  nameInput.value = profileTitle.textContent
-  jobInput.value = profileSubtitle.textContent
-  editProfileValidator.removeButtonDisabled()
+  const user = userInfo.getUserInfo();
+  nameInput.value = user.nameProfile;
+  jobInput.value = user.jobProfile;
+  editProfileValidator.removeButtonDisabled();
+  newPopupProfile.open();
 }
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  closePopup(profilePopup)
-}
+
+const newCard = new Section({
+  items: initialCards, 
+  renderer: (initialCards) => {
+    const cards = renderNewElement(initialCards);
+    const newCardRenderer = cards.getNewElement();
+    return newCardRenderer
+  }
+}, '.card')
+
+console.log()
 
 
 function openPopupCards() {
-  openPopup(cardPopup)
   editCardValidator.disableSubmitButton()
+  newPopupCard.open()
 }
 
-
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-  const newCard = {
-  name: titleInput.value,
-  link: linkInput.value,
-  }
-  elementsCard.prepend(renderNewElement(newCard))
-  closePopup(cardPopup)
-  popupFormCard.reset()
-}
+newCard.renderItems()
 
 
 popupOpenButtonCardsForm.addEventListener('click', openPopupCards);
 popupOpenButtonProfileForm.addEventListener('click', openPopupProfile);
-popupCloseButtonFormProfile.addEventListener('click', () => closePopup(profilePopup));
-popupCloseButtonFormCard.addEventListener('click', () => closePopup(cardPopup));
-popupCloseButtonPhoto.addEventListener('click', () => closePopup(photoPopup))
-
-popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
-popupFormCard.addEventListener('submit', handleCardFormSubmit);
