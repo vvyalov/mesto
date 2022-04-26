@@ -1,22 +1,19 @@
-import { FormValidator } from './FormValidator.js'
-import { Card } from './Card.js'
-import { photoPopup } from './utils.js'
-import { Section } from './Section.js'
-import { PopupWithImage } from './PopupWithImage.js'
-import { PopupWithForm } from './PopupWithForm.js'
-import { UserInfo } from './UserInfo.js'
+import { FormValidator } from '../components/FormValidator'
+import { Card } from '../components//Card.js'
+import { photoPopup } from '../components//utils.js'
+import { Section } from '../components//Section.js'
+import { PopupWithImage } from '../components//PopupWithImage.js'
+import { PopupWithForm } from '../components//PopupWithForm.js'
+import { UserInfo } from '../components/UserInfo.js'
 import '../pages/index.css';
 
-const popupOpenButtonProfileForm = document.querySelector('.profile__edit-button')
-const popupOpenButtonCardsForm = document.querySelector('.profile__add-button')
-const profilePopup = document.querySelector('.profile-popup')
-const cardPopup = document.querySelector('.card-popup')
-const profileTitle = document.querySelector('.profile__title')
-const profileSubtitle = document.querySelector('.profile__subtitle')
-const titleInput = document.querySelector('.popup__input_type_title')
-const linkInput = document.querySelector('.popup__input_type_link')
-const nameInput = document.querySelector('.popup__input_type_name')
-const jobInput = document.querySelector('.popup__input_type_job')
+const popupOpenButtonProfileForm = document.querySelector('.profile__edit-button');
+const popupOpenButtonCardsForm = document.querySelector('.profile__add-button');
+const profilePopup = document.querySelector('.profile-popup');
+const cardPopup = document.querySelector('.card-popup');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
+const photoPopupSelector = '.photo-popup'
 
 
 
@@ -64,43 +61,51 @@ const editCardValidator = new FormValidator(optionValidity, cardPopup)
 editProfileValidator.enableValidation()
 editCardValidator.enableValidation()
 
-const popupImage = new PopupWithImage(photoPopup)
+const popupImage = new PopupWithImage(photoPopupSelector)
+
+popupImage.setEventListeners()
 
 function renderNewElement(data) {
-  
   const card = new Card({
     data, handleCardClick: () => {
       popupImage.open(data.name, data.link)
     }
   }, '.elements-template')
-  return card
+  return card.getNewElement()
 }
 
 const userInfo = new UserInfo({ 
   nameSelector: '.profile__title',
-  jobSelector: '.profile__subtitle' 
-})
+  jobSelector: '.profile__subtitle',
+  })
 
 
 
-const newPopupProfile = new PopupWithForm(profilePopup, {
+const newPopupProfile = new PopupWithForm('.profile-popup', {
   handleFormSubmit: (form) => {
-    userInfo.setUserInfo(form);
-    profileTitle.textContent = nameInput.value;
-    profileSubtitle.textContent = jobInput.value;
-  }
+    const set = userInfo.setUserInfo(form)
+  },
 }) 
+newPopupProfile.setEventListeners()
+
+const newSection = new Section({
+  items: initialCards, 
+  renderer: (initialCards) => {
+    const cards = renderNewElement(initialCards);
+    return cards
+  }
+}, '.card')
 
 
-const newPopupCard = new PopupWithForm(cardPopup, {
+
+const newPopupCard = new PopupWithForm('.card-popup', {
   handleFormSubmit: () => {
-    const newnewCard = {
-    name: titleInput.value,
-    link: linkInput.value,
-   }
-    newCard.addItem(newnewCard);
+    const newCard = renderNewElement(newSection);
+    newSection.addItem(newCard);
   }
 })
+
+newPopupCard.setEventListeners()
 
 function openPopupProfile() {
   const user = userInfo.getUserInfo();
@@ -111,24 +116,12 @@ function openPopupProfile() {
 }
 
 
-const newCard = new Section({
-  items: initialCards, 
-  renderer: (initialCards) => {
-    const cards = renderNewElement(initialCards);
-    const newCardRenderer = cards.getNewElement();
-    return newCardRenderer
-  }
-}, '.card')
-
-console.log()
-
-
 function openPopupCards() {
   editCardValidator.disableSubmitButton()
   newPopupCard.open()
 }
 
-newCard.renderItems()
+newSection.renderItems()
 
 
 popupOpenButtonCardsForm.addEventListener('click', openPopupCards);

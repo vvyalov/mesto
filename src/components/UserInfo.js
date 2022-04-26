@@ -1,9 +1,7 @@
 export class UserInfo {
   constructor ({nameSelector, jobSelector}) {
-    this._nameSelector = nameSelector;
-    this._jobSelector = jobSelector;
-    this._nameProfile = document.querySelector(this._nameSelector)
-    this._jobProfile = document.querySelector(this._jobSelector)
+    this._nameProfile = document.querySelector(nameSelector)
+    this._jobProfile = document.querySelector(jobSelector)
 
   }
 
@@ -19,7 +17,6 @@ export class UserInfo {
   setUserInfo({name, job}){
     this._nameProfile.textContent = name;
     this._jobProfile.textContent = job;
-    console.log(name)
   }
 }
 
