@@ -80,7 +80,6 @@ const userInfo = new UserInfo({
   })
 
 
-
 const newPopupProfile = new PopupWithForm('.profile-popup', {
   handleFormSubmit: (form) => {
     const set = userInfo.setUserInfo(form)
