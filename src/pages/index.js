@@ -96,7 +96,6 @@ const newSection = new Section({
 }, '.card')
 
 
-
 const newPopupCard = new PopupWithForm('.card-popup', {
   handleFormSubmit: () => {
     const newCard = renderNewElement(newSection);
