@@ -1,6 +1,5 @@
 import { FormValidator } from '../components/FormValidator'
 import { Card } from '../components//Card.js'
-import { photoPopup } from '../components//utils.js'
 import { Section } from '../components//Section.js'
 import { PopupWithImage } from '../components//PopupWithImage.js'
 import { PopupWithForm } from '../components//PopupWithForm.js'
@@ -82,7 +81,7 @@ const userInfo = new UserInfo({
 
 const newPopupProfile = new PopupWithForm('.profile-popup', {
   handleFormSubmit: (form) => {
-    const set = userInfo.setUserInfo(form)
+    userInfo.setUserInfo(form)
   },
 }) 
 newPopupProfile.setEventListeners()
@@ -90,15 +89,15 @@ newPopupProfile.setEventListeners()
 const newSection = new Section({
   items: initialCards, 
   renderer: (initialCards) => {
-    const cards = renderNewElement(initialCards);
-    return cards
+    const card = renderNewElement(initialCards);
+    newSection.addItem(card);
   }
 }, '.card')
 
 
 const newPopupCard = new PopupWithForm('.card-popup', {
-  handleFormSubmit: () => {
-    const newCard = renderNewElement(newSection);
+  handleFormSubmit: (data) => {
+    const newCard = renderNewElement(data);
     newSection.addItem(newCard);
   }
 })

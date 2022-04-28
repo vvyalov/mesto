@@ -1,8 +1,6 @@
 export class Popup {
   constructor (popupSelector) {
     this.popup = document.querySelector(popupSelector);
-    this._closeButton = this.popup.querySelector('.popup__button_type_close');
-    this._closePopupAdd = this._closePopup.bind(this);
     this._escClose = this._handleEscClose.bind(this);
     this._overlayClose = this._handleOverlayClose.bind(this)
   }
@@ -19,19 +17,10 @@ close() {
 
 setEventListeners() {
   document.addEventListener('click', this._closePopupAdd)  
-  document.addEventListener('click', this._overlayClose);
+  this.popup.addEventListener('click', this._overlayClose);
 }
 
-removeEventListener() {
-  document.removeEventListener('click', this._closePopupAdd)
-  document.removeEventListener('click', this._overlayClose);
-}
 
-_closePopup(evt) {
-  if (evt.target === this._closeButton) {
-    this.close()
-  }
-}
 
 _handleEscClose(evt) {
     if (evt.key === 'Escape') {
@@ -40,7 +29,7 @@ _handleEscClose(evt) {
 };
 
 _handleOverlayClose(evt) {
-    if (evt.target.classList.contains('popup_open')) {
+    if (evt.target.classList.contains('popup_open')|| evt.target.classList.contains('popup__button_type_close')) {
         this.close()
     }
   }
