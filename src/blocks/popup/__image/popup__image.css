@@ -4,19 +4,6 @@ max-height: 75vh;
 align-self: start;
 grid-row-start: 2;
 grid-column-start: 1;
-grid-column-end: 1;
-margin-bottom: -75px;
 object-fit: cover;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .popup__image {
-    margin-bottom: -120px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .popup__image {
-    margin-bottom: -200px;
-  }
+margin: 0;
 }
