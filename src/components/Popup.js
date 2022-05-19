@@ -16,7 +16,6 @@ close() {
 };
 
 setEventListeners() {
-  document.addEventListener('click', this._closePopupAdd)  
   this.popup.addEventListener('click', this._overlayClose);
 }
 

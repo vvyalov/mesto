@@ -3,6 +3,7 @@ export class FormValidator {
         this._form = form
         this._validate = validate
         this._buttonElement = this._form.querySelector(this._validate.submitButtonSelector);
+        this._inputList = Array.from(this._form.querySelectorAll(this._validate.inputSelector));
     }
 
     _showError(inputElement, errorMessage) {
@@ -53,11 +54,10 @@ export class FormValidator {
     }
 
     _setEventListeners = () => {
-        const inputList = Array.from(this._form.querySelectorAll(this._validate.inputSelector));
-        inputList.forEach((inputElement) => {
+        this._inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkValidity(inputElement);
-                this._toggleButtonState(inputList);
+                this._toggleButtonState(this._inputList);
             });
         });
     };

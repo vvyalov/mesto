@@ -103,6 +103,7 @@ const newPopupProfile = new PopupWithForm('.profile-popup', {
       .finally(() =>{
         newPopupProfile.saveButtonText(false)
       })
+      newPopupProfile.close()
   },
 }) 
 newPopupProfile.setEventListeners()
@@ -112,7 +113,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userInfo.setUserInfo(initialInfo);
     userInfo.setUserAvatar(initialInfo);
     id = initialInfo._id;
-    newSection.renderItems(initialCards);
+    newSection.renderItems(initialCards.reverse());
   })
 
 const newSection = new Section({ 
@@ -136,6 +137,7 @@ const newPopupCard = new PopupWithForm('.card-popup', {
     .finally(() => {
       newPopupCard.saveButtonText(false)
     })
+    newPopupCard.close()
   }
 })
 
@@ -165,6 +167,7 @@ const newPopupDelete = new PopupWithDelete('.delete-popup', {
     .catch((err) => {
       console.log(`${err}`)
     })
+    newPopupDelete.close()
   }
 })
 
@@ -183,6 +186,7 @@ const newPopupAvatar = new PopupWithForm('.avatar-popup', {
     .finally(() =>{
       newPopupAvatar.saveButtonText(false)
     })
+    newPopupAvatar.close()
   }
 })
 

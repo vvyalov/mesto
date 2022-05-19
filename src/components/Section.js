@@ -8,6 +8,8 @@ export class Section {
         this._container.prepend(card);
     }
 
+
+
     renderItems(data) {
         data.forEach((item) => {
             this._renderer(item);
