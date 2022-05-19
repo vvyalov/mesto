@@ -10,7 +10,7 @@ import { Api } from '../components/Api'
 
 const popupOpenButtonProfileForm = document.querySelector('.profile__edit-button');
 const popupOpenButtonCardsForm = document.querySelector('.profile__add-button');
-const popupOpenButtonAvatar = document.querySelector('.avatar-popup__button')
+const popupOpenButtonAvatar = document.querySelector('.avatar__button')
 const profilePopup = document.querySelector('.profile-popup');
 const cardPopup = document.querySelector('.card-popup');
 const avatarPopup = document.querySelector('.avatar-popup')

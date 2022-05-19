@@ -42,7 +42,7 @@
   @import url(../blocks/photo-popup/photo-popup.css);
   @import url(../blocks/delete-popup/delete-popup.css);
   @import url(../blocks/avatar-popup/avatar-popup.css);
-    @import url(../blocks/avatar-popup/__button/avatar-popup__button.css);
+  @import url(../blocks/avatar/__button/avatar__button.css);
   @import url(../blocks/profile/__container/profile__container.css);
   @import url(../blocks/popup/__image/popup__image.css);
   @import url(../blocks/popup/__text/popup__text.css);
