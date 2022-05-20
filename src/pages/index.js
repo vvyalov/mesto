@@ -96,6 +96,7 @@ const newPopupProfile = new PopupWithForm('.profile-popup', {
     api.setUserInfo(form)
       .then((res) => {
     userInfo.setUserInfo(res)
+    newPopupProfile.close()
       })
       .catch((err) => {
         console.log(`${err}`)
@@ -103,7 +104,6 @@ const newPopupProfile = new PopupWithForm('.profile-popup', {
       .finally(() =>{
         newPopupProfile.saveButtonText(false)
       })
-      newPopupProfile.close()
   },
 }) 
 newPopupProfile.setEventListeners()
@@ -130,14 +130,15 @@ const newPopupCard = new PopupWithForm('.card-popup', {
     api.getInitialNewCard(formData)
     .then((res) => {
     const newCard = renderNewElement(res);
-    newSection.addItem(newCard);})
+    newSection.addItem(newCard);
+    newPopupCard.close()
+  })
     .catch((err) => {
       console.log(`${err}`)
     })
     .finally(() => {
       newPopupCard.saveButtonText(false)
     })
-    newPopupCard.close()
   }
 })
 
@@ -167,7 +168,6 @@ const newPopupDelete = new PopupWithDelete('.delete-popup', {
     .catch((err) => {
       console.log(`${err}`)
     })
-    newPopupDelete.close()
   }
 })
 
@@ -179,6 +179,7 @@ const newPopupAvatar = new PopupWithForm('.avatar-popup', {
     api.newAvatar(data)
     .then((res => {
       userInfo.setUserAvatar(res);
+      newPopupAvatar.close()
     }))
     .catch((err) => {
       console.log(`${err}`)
@@ -186,10 +187,8 @@ const newPopupAvatar = new PopupWithForm('.avatar-popup', {
     .finally(() =>{
       newPopupAvatar.saveButtonText(false)
     })
-    newPopupAvatar.close()
   }
 })
-
 newPopupAvatar.setEventListeners()
 
 
